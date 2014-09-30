@@ -23,8 +23,8 @@ $config['databases']=array(
 		'database'=>'',
 	),
 	'development'=>array(
-		'username'=>'couturelifestyles',
-		'password'=>'couturelifestyles',
+		'username'=>'couturelifestyle',
+		'password'=>'couturelifestyle',
 		'database'=>'couturelifestyles',
 	),
 	'production'=>array(
