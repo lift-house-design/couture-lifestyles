@@ -47,7 +47,8 @@ $route['contact'] = 'site/contact';
 $route['about'] = 'site/content/about'; 
 $route['terms'] = 'site/content/terms'; 
 $route['privacy'] = 'site/content/privacy'; 
-$route['blog/(:num)'] = 'blog/index/$1'; 
+$route['blog/(:num)'] = 'blog/index/$1';
+$route['news_feed/(:num)'] = 'news_feed/index/$1';
 
 // captcha images
 $route['captcha/(:any)/(:any)/(:any)'] = 'site/captcha/$1/$2';
@@ -64,8 +65,12 @@ $mysqli = new mysqli(
 	$config['database']['database']
 );
 $res = $mysqli->query('select name from content where type="page"');
-while($row = $res->fetch_assoc())
-    $route[$row['name']] = 'site/content/'.$row['name'];
+if ($res) {
+    
+    while($row = $res->fetch_assoc())
+        $route[$row['name']] = 'site/content/'.$row['name'];
+
+}
 /*
 require_once( __DIR__ .'/../../system/database/DB.php');
 

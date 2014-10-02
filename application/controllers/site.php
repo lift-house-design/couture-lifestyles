@@ -2,10 +2,15 @@
 
 class Site extends App_Controller
 {
+	public function getenv()
+	{
+		var_dump($this->config->item('environment')); exit;
+	}
 	public function __construct()
 	{
 		$this->models[] = 'content';
 		$this->models[] = 'blog';
+                $this->models[] = 'news_feed';
 		parent::__construct();
 		$this->asides['topbar'] = 'topbar';
 		$this->asides['footer'] = 'footer';
@@ -14,7 +19,7 @@ class Site extends App_Controller
 		// use min_css and min_js when possible to load assets through minify
 		//$this->min_js[] = 'application.js';		
 		//$this->min_css[] = 'application.css';
-		$this->min_js[] = '/plugins/select/jquery.customSelect.min.js';		
+		$this->min_js[] = '/assets/plugins/select/jquery.customSelect.min.js';		
 		
 		/*
 			LessCSS should only be used for development. 
@@ -37,8 +42,8 @@ class Site extends App_Controller
 			'title' => 'PHP Project Template - Go Nuts!',
 			'description' => 'Holy Cow This is amazing!'
 		));*/
-		$this->asides['footer'] = 'footer_index';
-		$this->asides['topbar'] = 'topbar_index';
+		$this->asides['footer'] = 'footer';
+		$this->asides['topbar'] = 'topbar';
 
 		if($this->data['is_mobile'])
 		{
@@ -54,7 +59,7 @@ class Site extends App_Controller
 			$this->min_js[] = 'index.js';
 			$this->min_css[] = '/plugins/skrollr/examples/fixed-positioning.css';
 		}
-		$this->asides['contact'] = 'contact';
+		 $this->asides['contact'] = 'contact';
 		$this->asides['content_home'] = 'content_home';
 		$this->data['content_about'] = $this->content->get('about');
 
@@ -68,15 +73,16 @@ class Site extends App_Controller
 	// this was used for slang.org CMS pages. Should build a CMS system with it.
 	public function content($page)
 	{
+               
 		$this->data['content'] = $this->content->get($page);
 		$this->data['page'] = $page;
-
 		$meta = $this->content->get_meta($page);
 		config_merge('meta',$meta);
 	}
 
 	public function contact()
 	{
+                $this->data['page'] = "contact";
 		$this->data['content'] = $this->content->get('contact');
 	//	$this->data['body_class'] = 'bg5';
 		$this->load->library('valid');

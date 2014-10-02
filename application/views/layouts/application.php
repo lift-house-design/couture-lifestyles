@@ -52,10 +52,10 @@
 	<meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
 
 	<!-- assets -->
-    <?= min_css($min_css) ?>
+    <?//= min_css($min_css) ?>
     <?= css($css) ?>
     <?= less_css($less_css) ?>
-    <?= min_js($min_js) ?>
+    <?//= min_js($min_js) ?>
 	<?= js($js) ?>
 
 	<!-- Thanks, Bill -->

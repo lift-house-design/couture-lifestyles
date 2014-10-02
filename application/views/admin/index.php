@@ -151,5 +151,10 @@
 		<iframe class="clear" src="/admin/blog">
 		</iframe>
 	</div>
+        <h3>News Management</h3>
+	<div>
+		<iframe class="clear" src="/admin/news_feed">
+		</iframe>
+	</div>
 </div>
 <div class="spacer20"></div>

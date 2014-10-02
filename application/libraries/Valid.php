@@ -1,4 +1,4 @@
-<?
+<?php
 
 /* For data/form validation */
 class Valid

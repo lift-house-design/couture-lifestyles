@@ -2,7 +2,7 @@
 
 /* Set Environment */
 // detect from host (local.domain.com => local, domain.lifthousedesign.com => development, other => production)
-if(strpos($_SERVER['HTTP_HOST'],'local') === 0)
+if(strpos($_SERVER['HTTP_HOST'],'couture-lifestyles.local') === 0)
 	$config['environment'] = 'local';
 elseif(strpos($_SERVER['HTTP_HOST'],'.lifthousedesign.com') !== false)
 	$config['environment'] = 'development';
@@ -18,9 +18,9 @@ $config['databases']=array(
 		'db_debug' => true,		
 	),
 	'local'=>array(
-		'username'=>'',
+		'username'=>'root',
 		'password'=>'',
-		'database'=>'',
+		'database'=>'couturelifestyles',
 	),
 	'development'=>array(
 		'username'=>'couturelifestyle',
@@ -51,10 +51,10 @@ $config['module_path'] = APPPATH.'modules';
 
 /* Metadata/SEO */
 $config['meta'] = array(
-	'site_name' => 'JMVredenburgh',
-	'title' => "JMVredenburgh",
-	'description' => "JMVredenburgh",
-	'keywords' =>'JMVredenburgh',
+	'site_name' => 'Couture Homes',
+	'title' => "Couture Homes",
+	'description' => "Couture Homes",
+	'keywords' =>'Couture Homes',
 	'url' => $config['full_path'],
 	'image' => '/assets/img/logo.png'
 );
@@ -78,8 +78,8 @@ $config['social_media'] = array(
 /* E-mail Notifications */
 $config['contact_recipient'] = '';
 $config['email_notifications']=array(
-	'sender_email'=>'no-reply@JMVredenburgh.com',
-	'sender_name'=>'JMVredenburgh',
+	'sender_email'=>'no-reply@couturelifestyles.com',
+	'sender_name'=>'Couture Homes',
 	'config'=>array(
 		'protocol'=>'sendmail',
 		'mailtype'=>'html',

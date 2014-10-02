@@ -1,4 +1,4 @@
-<? foreach($blogs as $b){ ?>
+<? foreach($news as $b){ ?>
 	<div class="blog-wrap">
 		<h3 class="blog-title">
 			<?= $b['name'] ?>
@@ -10,8 +10,8 @@
 	<div class="spacer10"></div>
 <? } ?>
 <? if(isset($older)){ ?>
-	<a href="/blog/<?= intval($older) ?>">&larr; Older</a>
+	<a href="/news_feed/<?= intval($older) ?>">&larr; Older</a>
 <? } ?>
 <? if(isset($newer)){ ?>
-	<a class="pull-right" href="/blog/<?= intval($newer) ?>">Newer &rarr;</a>
+	<a class="pull-right" href="/news_feed/<?= intval($newer) ?>">Newer &rarr;</a>
 <? } ?>

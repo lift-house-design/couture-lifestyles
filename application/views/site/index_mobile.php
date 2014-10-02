@@ -1,4 +1,4 @@
-
+<?= $yield_topbar ?>
 <div id="background">
 	<img id="signature" src="/assets/img/sig.png"/>
 </div>
@@ -43,7 +43,7 @@
 	</div>
 	<?= $yield_footer ?>
 </div>
-<?= $yield_topbar ?>
+
 
 <script>
 $(function(){

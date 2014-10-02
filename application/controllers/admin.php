@@ -9,6 +9,7 @@ class Admin extends App_Controller
 	{
 		$this->models[] = 'content';
 		$this->models[] = 'blog';
+                $this->models[] = 'news_feed';
 
 		parent::__construct();
 
@@ -80,6 +81,13 @@ class Admin extends App_Controller
 		$this->data['blogs'] = $this->blog->get_all();
 	}
 
+        public function news_feed()
+	{
+		$this->layout = 'blank';
+		$this->authenticate = 'blogger';
+		$this->data['news'] = $this->news_feed->get_all();
+	}
+        
 	public function blog_add()
 	{
 		$this->layout = 'blank';
@@ -112,6 +120,39 @@ class Admin extends App_Controller
 		$this->view = 'admin/blog';
 	}
 
+        
+        public function news_feed_add()
+	{
+		$this->layout = 'blank';
+		$this->authenticate = 'blogger';
+		$this->load->library('valid');
+		$post = $this->input->post();
+		if(empty($post))
+			redirect('/admin/news_feed/');
+		$err = $this->valid->validate(
+			$post,
+			array(
+				array('name',''),
+				array('content','')
+			)
+		);
+		
+		
+		if($err)
+		{
+			$this->data = array_merge($this->data, $post);
+			$this->errors[] = $err;
+		}
+		else
+		{
+			$this->blog->create($post['name'], $post['content']);
+			$this->notifications[] = 'News Posted!';
+		}
+
+		$this->blog();
+		$this->view = 'admin/news_feed';
+	}
+        
 	public function blog_edit($id)
 	{
 		$this->layout = 'blank';
@@ -147,6 +188,41 @@ class Admin extends App_Controller
 		$this->view = 'admin/blog';
 	}
 
+        public function news_feed_edit($id)
+	{
+		$this->layout = 'blank';
+		$this->authenticate = 'blogger';
+		$this->load->library('valid');
+		$post = $this->input->post();
+		if(empty($post))
+		{
+			$blog = $this->blog->get($id);
+			$this->data = array_merge($this->data, $blog);
+			return;
+		}
+		$err = $this->valid->validate(
+			$post,
+			array(
+				array('name',''),
+				array('content','')
+			)
+		);
+		if($err)
+		{
+			$this->data = array_merge($this->data, $post);
+			$this->data['id'] = $id;
+			$this->errors[] = $err;
+		}
+		else
+		{
+			$this->db->where('id',$id)->update('news_feed',$post);
+			$this->notifications[] = 'Changes Saved!';
+		}
+
+		$this->blog();
+		$this->view = 'admin/news_feed';
+	}
+        
 	public function blog_delete($id)
 	{
 		$this->layout = 'blank';
@@ -155,6 +231,16 @@ class Admin extends App_Controller
 		$this->notifications[] = 'Blog Deleted!';
 		$this->blog();
 		$this->view = 'admin/blog';
+	}
+        
+        public function news_feed_delete($id)
+	{
+		$this->layout = 'blank';
+		$this->authenticate = 'blogger';
+		$this->db->where('id',$id)->delete('news_feed');
+		$this->notifications[] = 'News Deleted!';
+		$this->blog();
+		$this->view = 'admin/news_feed';
 	}
 }
 

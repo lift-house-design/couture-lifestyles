@@ -14,20 +14,21 @@ class App_Controller extends CI_Controller
      * VARIABLES
      * ------------------------------------------------------------ */
     
-    protected $js=array();
-    protected $min_js=array(
+    protected $js=array(
         'jquery-1.10.2.min.js',
         'modernizr-2.6.2.min.js',
         'jquery.placeholder.js',
         'application.js',
     );
+    protected $min_js=array();
     
-    protected $css = array();
-    protected $min_css = array(
+    protected $css = array(
         'normalize.css',
         'application.css',
         'mobile.css'
     );
+    
+    protected $min_css = array();
     protected $less_css = array();
 
     protected $asides = array(
@@ -90,7 +91,6 @@ class App_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
         $db_config=$this->config->item('database');
         $this->load->database($db_config);
 
@@ -139,10 +139,10 @@ class App_Controller extends CI_Controller
     {
         // Set the basic data
         $this->data['css'] = $this->css;
-        $this->data['min_css'] = $this->min_css;
+        //$this->data['min_css'] = $this->min_css;
         $this->data['less_css'] = $this->less_css;
         $this->data['js'] = $this->js;
-        $this->data['min_js'] = $this->min_js;
+       // $this->data['min_js'] = $this->min_js;
         $this->data['site_name'] = $this->config->item('site_name');
         $this->data['base_url'] = $this->config->item('base_url');
         $this->data['meta'] = $this->config->item('meta');
