@@ -1,4 +1,4 @@
-<div id="topbar">
+<div id="topbar" class="">
     <div class="content-wrap2">
     <a class ="logo" href="/">
         <img  src="/assets/img/logo.png" alt="<?= $meta['site_name'] ?>"/>
@@ -22,10 +22,9 @@
         }
         
         
-       
-        
         $menu .= "</li>";
     }
+    $menu .= "<li class ='parent'>".anchor("gallery", 'Gallery')."</li>";
     $menu .= "<li class ='parent'>".anchor("news_feed", 'News')."</li>";
     $menu .= "<li class ='parent'>".anchor("contact", 'Contact')."</li>";
     $menu .= "</ul>";

@@ -157,4 +157,6 @@
 		</iframe>
 	</div>
 </div>
+<h3> <a href="/admin/gallery">Manage Gallery</a> </h3>
 <div class="spacer20"></div>
+

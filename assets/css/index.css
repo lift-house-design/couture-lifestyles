@@ -2527,6 +2527,7 @@ body {
 div#content-wrap {
   padding: 20px;
 }
+/*
 #topbar {
   height: 74px;
   margin: 0;
@@ -2563,7 +2564,8 @@ div#content-wrap {
   padding: 0;
   height: 74px;
   float: left;
-}
+}*/
+
 #footer {
   background: #000000;
   color: #ffffff;
@@ -2835,6 +2837,7 @@ span.time {
 #background {
   min-width: 100%;
   min-height: 100%;
+  max-height: 90%;
   width: 100%;
   background: url(/assets/img/background.png);
   background-size: cover;

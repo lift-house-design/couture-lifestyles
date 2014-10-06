@@ -53,6 +53,31 @@ $(function()
     ;
 
     $('input,textarea').placeholder();
+    
+    
+     /* 
+             *  Fix main menu on top on scroll           
+             */
+            var $fixeddiv = $("#topbar");
+            var $movingdiv  = $(".content-wrap");  
+            function fixDiv() {
+                
+                if ($(window).scrollTop() > $fixeddiv.data("top")) {
+                    $fixeddiv.css({'position': 'fixed', 'top': '0', 'width': '100%'});
+                    $fixeddiv.addClass("topfixed");
+                    $movingdiv.addClass("topfixed2");
+
+                }
+                else {
+                    $fixeddiv.css({'position': 'static', 'top': 'auto', 'width': '100%'});
+                    $fixeddiv.removeClass("topfixed");
+                    $movingdiv.removeClass("topfixed2");
+                }
+            }
+
+            $fixeddiv.data("top", $fixeddiv.offset().top); // set original position on load
+            $(window).scroll(fixDiv);
+    
 
 
     /* main menu */

@@ -52,11 +52,13 @@
 	<meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
 
 	<!-- assets -->
-    <?// = min_css($min_css) ?>
+    <?//= min_css($min_css) ?>
     <?= css($css) ?>
+     <link rel="stylesheet" type="text/css" href="/plugins/skrollr/examples/fixed-positioning.css">   
     <?= less_css($less_css) ?>
-    <?// = min_js($min_js) ?>
+    <?//= min_js($min_js) ?>
 	<?= js($js) ?>
+      <!--  <script type="text/javascript"  src="/plugins/skrollr/dist/skrollr.min.js"></script> -->
 </head>
 <body>
 	<?= $yield_notifications ?>

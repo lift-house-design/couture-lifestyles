@@ -48,16 +48,26 @@
 	<link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96">
 	<link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16">
 	<link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32">
+         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/colorbox.css" />
 	<meta name="msapplication-TileColor" content="#ffc40d">
 	<meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
 
 	<!-- assets -->
-    <?//= min_css($min_css) ?>
+    <? //= min_css($min_css) ?>
     <?= css($css) ?>
     <?= less_css($less_css) ?>
-    <?//= min_js($min_js) ?>
+    <link rel="stylesheet" type="text/css" href="/plugins/skrollr/examples/fixed-positioning.css">   
+    <? //= min_js($min_js) ?>
 	<?= js($js) ?>
+     <script src="<?php echo base_url(); ?>assets/js/jquery.colorbox.js"></script>
+        <script>
+            $(document).ready(function() {
+                //Examples of how to assign the Colorbox event to elements
+                $(".group1").colorbox({rel: 'group1'});
 
+            });
+            </script>
+        <!-- script type="text/javascript" src="/plugins/skrollr/dist/skrollr.min.js"></script>-->
 	<!-- Thanks, Bill -->
 	<!--[if lt IE 9]>
 		<script src="/assets/js/IE9.js"></script>

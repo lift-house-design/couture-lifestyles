@@ -24,8 +24,12 @@ class App_Controller extends CI_Controller
     
     protected $css = array(
         'normalize.css',
-        'application.css',
-        'mobile.css'
+       // 'index.css',
+       // 'fixed-positioning.css',
+       // 'main2.css',
+       // 'blank.css',
+        'normalize.css',
+        'application.css'
     );
     
     protected $min_css = array();
@@ -91,6 +95,7 @@ class App_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
         $db_config=$this->config->item('database');
         $this->load->database($db_config);
 

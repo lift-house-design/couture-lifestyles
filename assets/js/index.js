@@ -65,16 +65,16 @@ function set_content_bottom()
 {
 	$('#index-wrap').css('margin-top',(window.innerHeight));
 	var margin = ($('#index-wrap').height() - window.innerHeight);
-	var topblog = $('#blog').position().top;
-	var topabout = $('#about').position().top;
-	var topcontact = $('#contact').position().top;
-	var topcontact = Math.min(topcontact,margin+74);
+	//var topblog = $('#blog').position().top;
+	// var topabout = $('#about').position().top;
+	//var topcontact = $('#contact').position().top;
+	//var topcontact = Math.min(topcontact,margin+74);
 
-	$('#index-wrap').attr('data-0',"top:"+window.innerHeight+"px;left:0px;margin-top:0px");
-	$('#index-wrap').attr('data-170','top:-'+topblog+'px;margin-top:74px');
-	$('#index-wrap').attr('data-200','top:-'+topblog+'px;margin-top:74px');
-	$('#index-wrap').attr('data-270','top:-'+topcontact+'px;margin-top:74px');
-	$('#index-wrap').attr('data-300','top:-'+topcontact+'px;margin-top:74px');
+	$('#index-wrap').attr('data-0',"top:"+(window.innerHeight-74)+"px;left:0px;margin-top:0px");
+//	$('#index-wrap').attr('data-170','top:-'+topblog+'px;margin-top:74px');
+//	$('#index-wrap').attr('data-200','top:-'+topblog+'px;margin-top:74px');
+//	$('#index-wrap').attr('data-270','top:-'+topcontact+'px;margin-top:74px');
+//	$('#index-wrap').attr('data-300','top:-'+topcontact+'px;margin-top:74px');
 	$('#index-wrap').attr('data-370','top:-'+margin+'px;margin-top:0px');
 	$('#index-wrap').attr('data-400','top:-'+margin+'px;margin-top:0px');
 }

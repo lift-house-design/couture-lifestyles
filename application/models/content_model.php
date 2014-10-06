@@ -56,6 +56,14 @@ class Content_model extends App_Model
 			return '';
 		return $res['content'];
 	}
+        
+        public function get_title($name)
+	{
+		$res = $this->db->where('name',$name)->select('title')->get('content')->row_array();
+		if(!$res)
+			return '';
+		return $res['title'];
+	}
 
 	public function get_all()
 	{

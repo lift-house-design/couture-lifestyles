@@ -1,12 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Site extends App_Controller
+
 {
-	public function getenv()
-	{
-		var_dump($this->config->item('environment')); exit;
-	}
+    protected $data = array(
+        'dir' => array(
+            'original' => 'assets/uploads/original/',
+            'thumb' => 'assets/uploads/thumbs/'
+        ),
+        'total' => 0,
+        'images' => array(),
+        'error' => ''
+    );
+    
 	public function __construct()
+                
 	{
 		$this->models[] = 'content';
 		$this->models[] = 'blog';
@@ -17,9 +25,9 @@ class Site extends App_Controller
 		$this->asides['notifications'] = 'notifications';
 		
 		// use min_css and min_js when possible to load assets through minify
-		//$this->min_js[] = 'application.js';		
-		//$this->min_css[] = 'application.css';
-		$this->min_js[] = '/assets/plugins/select/jquery.customSelect.min.js';		
+		$this->min_js[] = 'application.js';		
+		$this->min_css[] = 'application.css';
+		$this->js[] = '/assets/plugins/select/jquery.customSelect.min.js';		
 		
 		/*
 			LessCSS should only be used for development. 
@@ -48,21 +56,21 @@ class Site extends App_Controller
 		if($this->data['is_mobile'])
 		{
 			$this->view = 'site/index_mobile';
-			$this->min_css[1] = 'index_mobile.css';
-			$this->min_js[] = 'index_mobile.js';
+			$this->css[1] = 'index_mobile.css';
+			$this->js[] = 'index_mobile.js';
 		}
 		else
 		{
-			//$this->min_css[] = 'index.css';
-			$this->min_js[] = '/plugins/skrollr/dist/skrollr.min.js';
-			$this->min_css[1] = 'index.css';
-			$this->min_js[] = 'index.js';
-			$this->min_css[] = '/plugins/skrollr/examples/fixed-positioning.css';
+			$this->css[] = 'index.css';
+                        $this->css[] = 'application.css';
+			$this->js[] = '/plugins/skrollr/dist/skrollr.min.js';
+			$this->css[1] = 'index.css';
+			$this->js[] = 'index.js';
+			$this->css[] = '/plugins/skrollr/examples/fixed-positioning.css';
 		}
 		 $this->asides['contact'] = 'contact';
 		$this->asides['content_home'] = 'content_home';
 		$this->data['content_about'] = $this->content->get('about');
-
 		$this->data['blogs'] = $this->blog->recent(0,5);
 	}
 
@@ -75,6 +83,7 @@ class Site extends App_Controller
 	{
                
 		$this->data['content'] = $this->content->get($page);
+                $this->data['title'] = $this->content->get_title($page);
 		$this->data['page'] = $page;
 		$meta = $this->content->get_meta($page);
 		config_merge('meta',$meta);
@@ -155,6 +164,47 @@ class Site extends App_Controller
 		$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
 	}
 
+        
+        public function gallery($start = 0) {
+
+        try {
+
+            $this->load->library('pagination');
+
+            $c_paginate['base_url'] = site_url('image/index');
+            $c_paginate['per_page'] = '9';
+            $finish = $start + $c_paginate['per_page'];
+
+            if (is_dir($this->data['dir']['thumb'])) {
+                $i = 0;
+                if ($dh = opendir($this->data['dir']['thumb'])) {
+                    while (($file = readdir($dh)) !== false) {
+                        // get file extension
+                        $ext = strrev(strstr(strrev($file), ".", TRUE));
+                        if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png') {
+                            if ($start <= $this->data['total'] && $this->data['total'] < $finish) {
+                                $this->data['images'][$i]['thumb'] = $file;
+                                $this->data['images'][$i]['original'] = str_replace('thumb_', '', $file);
+                                $i++;
+                            }
+                            $this->data['total']++;
+                        }
+                    }
+                    closedir($dh);
+                }
+            }
+
+            $c_paginate['total_rows'] = $this->data['total'];
+
+            $this->pagination->initialize($c_paginate);
+            
+            $this->load->view('images/gallery', $this->data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+        
 	// robots.txt generator
 	public function robots()
 	{

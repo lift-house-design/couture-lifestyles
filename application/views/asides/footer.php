@@ -9,7 +9,7 @@
     <div class="w100pc hidden">
         <div class="w33pc footerwraper first">
             <a class="w100pc"  href="/" alt=" Home <?= $meta['site_name'] ?>">Home</a>
-            <a class="w100pc"  href="/about" alt=" About <?= $meta['site_name'] ?>">About</a>
+            <a class="w100pc"  href="/aboutus" alt=" About <?= $meta['site_name'] ?>">About</a>
             <a class="w100pc"  href="/gallery" alt="Gallery<?= $meta['site_name'] ?>">Gallery</a>
         </div>
         <div class="w33pc footerwraper second">
