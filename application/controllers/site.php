@@ -172,7 +172,7 @@ class Site extends App_Controller
             $this->load->library('pagination');
 
             $c_paginate['base_url'] = site_url('image/index');
-            $c_paginate['per_page'] = '9';
+            $c_paginate['per_page'] = '999';
             $finish = $start + $c_paginate['per_page'];
 
             if (is_dir($this->data['dir']['thumb'])) {

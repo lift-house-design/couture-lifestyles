@@ -10,7 +10,7 @@
 			<input type="text" name="name" placeholder="Name (first and last)" value="<?= $name ?>"/>
 			<input type="text" name="phone" placeholder="Mobile Phone" value="<?= $phone ?>"/>
 			<input type="text" name="email" placeholder="Email" value="<?= $email ?>"/>
-			<textarea name="message" placeholder="How can we help you?" class="tall"><?= $message ?></textarea>
+			<textarea name="message" placeholder="What can we build for you?" class="tall"><?= $message ?></textarea>
 			<input type="submit" value="SEND"/>
 		</form>
 	</div>

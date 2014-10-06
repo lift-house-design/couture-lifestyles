@@ -15,7 +15,6 @@
         <div class="w33pc footerwraper second">
             <a class="w100pc"  href="/where-we-build" alt="Where We Build <?= $meta['site_name'] ?>">Where We Build</a>
             <a class="w100pc"  href="/old-palm" alt="Old Palm<?= $meta['site_name'] ?>">Old Palm</a>
-            <a class="w100pc"  href="/frenchman-s-creek" alt="Frenchman's Creek <?= $meta['site_name'] ?>">Frenchman's Creek</a>
         </div>
         <div class="w33pc footerwraper third">
             <a class="w100pc"  href="/news_feed" alt="News<?= $meta['site_name'] ?>">News</a>
@@ -35,7 +34,7 @@
         <hr/>
         <div class="w100pc align-center hidden">
             <? foreach ($social_media as $s) { ?>
-                <? if (empty($s['value'])) continue; ?>
+                <? if (!empty($s['value'])) continue; ?>
                 <a target="_blank" href="<?= $s['value'] ?>" title="<?= $site_name . ' ' . $s['label'] ?>">
                     <img src="/assets/img/<?= $s['name'] ?>.png" alt="<?= $s['label'] ?>"/>
                 </a>
