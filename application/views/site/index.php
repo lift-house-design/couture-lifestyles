@@ -1,35 +1,35 @@
 <style>
-
+#index-wrap {
+	position: relative;
+}
+#background {
+	background-repeat: none;
+	position: relative;
+} 
 </style>
-<div id="skrollr-body">
-</div>
+<script>
+	$(function(){
+/*		var viewport_height=$(window).innerHeight(),
+			nav_height=$('#topbar').outerHeight(),
+			wrapper_top=viewport_height-nav_height,
+			half_wrap_top=Math.ceil(wrapper_top/2);
 
-
-<div id="background" 
-	data-0="bottom:00%;left:0%"
-	data-100="bottom:50%;left:0%">
+		$('#index-wrap').css('margin-top', '-'+half_wrap_top+'px');*/
+		// console.log(half_wrap_top);
+	});
+</script>
+<div id="background">
 	<img id="signature" src="/assets/img/sig.png"/>
 </div>
-  
-<div id="index-wrap"
-	data-0="top:100%;left:0px;margin-top:0px"
-	data-70="top:0px;left:0px;margin-top:74px;"
-	data-100="top:0px;left:0px;margin-top:74px;">
-             <?= $yield_topbar ?>
-
-		<!--img src="/assets/img/pedal.png" alt="Guitar Pedal" class="w100pc"/-->
-		
-		<div class="content-wrap">
-		   <? // =$yield_content_home ?>
-                   <div class="about">
-                    
-                   <?= $content_about ?>
-                   </div>
+<div id="index-wrap">
+	<?= $yield_topbar ?>
+	<div class="content-wrap">
+		<div class="about">
+			<?= $content_about ?>
 		</div>
+	</div>
 	<?= $yield_footer ?>
-             
 </div>
-
 <script>
 $(function(){
 	<? if(!empty($scroll_to)){ ?>

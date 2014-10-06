@@ -75,8 +75,8 @@ $(function()
                 }
             }
 
-            $fixeddiv.data("top", $fixeddiv.offset().top); // set original position on load
-            $(window).scroll(fixDiv);
+            // $fixeddiv.data("top", $fixeddiv.offset().top); // set original position on load
+            // $(window).scroll(fixDiv);
     
 
 
