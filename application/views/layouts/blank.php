@@ -60,7 +60,7 @@
 	<?= js($js) ?>
       <!--  <script type="text/javascript"  src="/plugins/skrollr/dist/skrollr.min.js"></script> -->
 </head>
-<body>
+<body class="homepage">
 	<?= $yield_notifications ?>
 	<?= $yield ?>
 </body>

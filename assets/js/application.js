@@ -1,5 +1,46 @@
 $(function()
 {
+    if($('#homepage').length)
+    {
+        var viewport_height=$(window).innerHeight(),
+            nav_height=$('#topbar').outerHeight(),
+            wrapper_top=viewport_height-nav_height,
+            half_wrap_top=Math.ceil(wrapper_top/2);
+
+        var index_obj={},
+            bg_obj={};
+
+        index_obj['data-start']='margin-top:-'+half_wrap_top+'px';
+        index_obj['data-end']='margin-top:-'+$('#background').height()+'px';
+
+        bg_obj['data-start']='top: 0px';
+        bg_obj['data-end']='top: -275px';
+
+        $('#index-wrap')
+            .attr(index_obj)
+            .css('margin-top', half_wrap_top+'px');
+        $('#background')
+            .attr(bg_obj);
+
+        // var new_h=$('#background').height()-76;
+        // $('#background').css('height',new_h+'px');
+
+        // Set min height on content container to fill page and hide bg image
+        var min_h_diff=$('#topbar').outerHeight()+$('#footer').outerHeight()+100+20,
+            min_h=viewport_height-min_h_diff;
+        
+        $('#index-wrap .content-wrap')
+            .css('min-height',(min_h/2)+'px');
+            
+        skrollr.init({
+            smoothScrolling: true,
+            smoothScrollingDuration: 1000,
+            scale: 5
+        });
+    }
+
+    
+
     /* custom select BS */
     if ($.isFunction($.fn.customSelect) && $('select'))
     {

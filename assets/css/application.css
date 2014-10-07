@@ -2927,11 +2927,68 @@ div#content-wrap {
 div.content-wrap.topfixed2  {
     margin-top: 74px;
 }
-
+#gallery {
+  text-align: center;
+}
 #gallery a img{
-    display: block;
-    float: left;
+    /* display: block; */
+    /* float: left; */
     padding: 10px;
     border: 1px solid #ccc;
     margin: 5px;
+    width: 200px;
+}
+.pagecontent .images {
+  float: left;
+  width: 400px;
+}
+.pagecontent .images img {
+  float: none;
+}
+.pagecontent .content {
+  margin-left: 400px;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #topbar .content-wrap2 {
+        position: relative;
+    }
+    #topbar a.logo {
+        float: none;
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 50px;
+        height: 51px;
+    }
+    #topbar ul.mainmenu {
+        float: none;
+        position: absolute;
+        top: 0;
+        right: -10px;
+        left: 77px;
+        height: 74px;
+        overflow: hidden;
+    }
+    #topbar ul.mainmenu li {
+        font-size: .8em;
+
+    }
+    #topbar ul.mainmenu li a {
+        padding: 20px 10px;
+    }
+    .sticky-nav #topbar {
+      position: fixed;
+    }
+    .pagecontent .images {
+      float: none;
+      width: auto;
+    }
+    .pagecontent .content {
+      margin-left: 0;
+    }
+    #gallery a img{
+  width: 140px;
+    }
 }

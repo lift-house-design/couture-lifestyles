@@ -1,4 +1,4 @@
-<div id="topbar" class="">
+<div id="topbar">
     <div class="content-wrap2">
     <a class ="logo" href="/">
         <img  src="/assets/img/logo.png" alt="<?= $meta['site_name'] ?>"/>

@@ -73,7 +73,7 @@
 		<script src="/assets/js/IE9.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body class="sticky-nav">
 	<?= $yield_topbar ?>
 	<div id="content-wrap">
 		<?= $yield_notifications ?>

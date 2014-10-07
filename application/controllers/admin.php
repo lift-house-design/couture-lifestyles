@@ -275,8 +275,8 @@ class Admin extends App_Controller {
                 'image_library' => 'gd2',
                 'source_image' => $img['full_path'],
                 'maintain_ratio' => TRUE,
-                'width' => 100,
-                'height' => 100,
+                'width' => 200,
+                'height' => 200,
                 'new_image' => $new_image
             );
 

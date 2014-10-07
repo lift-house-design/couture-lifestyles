@@ -18,18 +18,17 @@ class App_Controller extends CI_Controller
         'jquery-1.10.2.min.js',
         'modernizr-2.6.2.min.js',
         'jquery.placeholder.js',
+        '/assets/plugins/select/jquery.customSelect.min.js',
+        '/plugins/skrollr/dist/skrollr.min.js',
         'application.js',
     );
     protected $min_js=array();
     
     protected $css = array(
         'normalize.css',
-       // 'index.css',
-       // 'fixed-positioning.css',
-       // 'main2.css',
-       // 'blank.css',
         'normalize.css',
-        'application.css'
+        'application.css',
+        '/plugins/skrollr/examples/fixed-positioning.css',
     );
     
     protected $min_css = array();

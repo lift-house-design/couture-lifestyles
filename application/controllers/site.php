@@ -18,23 +18,13 @@ class Site extends App_Controller
 	{
 		$this->models[] = 'content';
 		$this->models[] = 'blog';
-                $this->models[] = 'news_feed';
-		parent::__construct();
+        $this->models[] = 'news_feed';
+		
 		$this->asides['topbar'] = 'topbar';
 		$this->asides['footer'] = 'footer';
 		$this->asides['notifications'] = 'notifications';
 		
-		// use min_css and min_js when possible to load assets through minify
-		$this->min_js[] = 'application.js';		
-		$this->min_css[] = 'application.css';
-		$this->js[] = '/assets/plugins/select/jquery.customSelect.min.js';		
-		
-		/*
-			LessCSS should only be used for development. 
-			When you are ready to deploy, compile your less files into css files.
-			Then remove any included .less files so that less.js will not be loaded.
-		*/
-		//$this->less_css[] = 'application.less';
+		parent::__construct();
 	}
 
 	/* Ad hoc pages */
@@ -42,33 +32,32 @@ class Site extends App_Controller
 	public function index()
 	{
 		$this->data['is_mobile'] = preg_match("/Mobile|Android|BlackBerry|Phone|Bot|Spider|Crawler/i", $_SERVER['HTTP_USER_AGENT']);
-		
+		// Why?
 		$this->contact();
-
 		$this->layout = 'blank.php';
-		/*config_merge('meta',array(
-			'title' => 'PHP Project Template - Go Nuts!',
-			'description' => 'Holy Cow This is amazing!'
-		));*/
 		$this->asides['footer'] = 'footer';
 		$this->asides['topbar'] = 'topbar';
 
-		if($this->data['is_mobile'])
-		{
-			$this->view = 'site/index_mobile';
-			$this->css[1] = 'index_mobile.css';
-			$this->js[] = 'index_mobile.js';
-		}
-		else
-		{
-			$this->css[] = 'index.css';
-                        $this->css[] = 'application.css';
-			$this->js[] = '/plugins/skrollr/dist/skrollr.min.js';
-			$this->css[1] = 'index.css';
-			$this->js[] = 'index.js';
-			$this->css[] = '/plugins/skrollr/examples/fixed-positioning.css';
-		}
-		 $this->asides['contact'] = 'contact';
+		// if($this->data['is_mobile'])
+		// {
+		// 	$this->view = 'site/index_mobile';
+		// 	$this->css[1] = 'index_mobile.css';
+		// 	$this->js[] = 'index_mobile.js';
+		// }
+		// else
+		// {
+		// $this->css[] = 'application.css';
+		$this->css[] = 'index.css'; //$this->data['is_mobile'] ? 'index_mobile.css' : 'index.css';
+		$this->css[] = 'application.css'; //$this->data['is_mobile'] ? 'index_mobile.css' : 'index.css';
+		
+		// $this->js[] = 'index.js'; //$this->data['is_mobile'] ? 'index_mobile.js' : 'index.js';
+		// Need index.js to be loaded before application.js
+		// unset($this->js[ array_search('application.js',$this->js) ]);
+
+	
+		// }
+
+		$this->asides['contact'] = 'contact';
 		$this->asides['content_home'] = 'content_home';
 		$this->data['content_about'] = $this->content->get('about');
 		$this->data['blogs'] = $this->blog->recent(0,5);

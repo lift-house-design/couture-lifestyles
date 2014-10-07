@@ -2634,7 +2634,7 @@ textarea,
   border: 1px solid #000000;
   height: 30px;
   width: 90%;
-  /*	max-width:300px; */
+  /*  max-width:300px; */
 
   margin-bottom: 4px;
   text-align: center;
@@ -2664,10 +2664,10 @@ input[type="submit"]:hover,
 input[type="button"]:hover,
 button:hover {
   /*
-	background: @c0;
-	color:@c8;
-	border-color:@c0;
-	*/
+  background: @c0;
+  color:@c8;
+  border-color:@c0;
+  */
 
   color: #000000;
   background-color: #ffffff;
