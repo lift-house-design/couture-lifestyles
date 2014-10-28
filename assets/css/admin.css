@@ -2804,7 +2804,7 @@ table.striped tr:nth-child(odd) td {
 table.padded tr td {
   padding: 8px;
 }
-iframe.clear {
+iframe.section {
   border: 0;
   width: 99.9%;
   height: 100%;

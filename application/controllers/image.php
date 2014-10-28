@@ -4,20 +4,20 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Image extends App_Controller {
-    
-    protected $data = array(
-        'dir' => array(
-            'original' => 'assets/uploads/original/',
-            'thumb' => 'assets/uploads/thumbs/'
-        ),
-        'total' => 0,
-        'images' => array(),
-        'error' => ''
-    );
-
     public function __construct() {
        
         $this->models[] = 'user';
+
+        $this->data=array_merge($this->data,array(
+            'dir' => array(
+                'original' => 'assets/uploads/original/',
+                'thumb' => 'assets/uploads/thumbs/'
+            ),
+            'total' => 0,
+            'images' => array(),
+            'error' => ''
+        ));
+
         parent::__construct();
         
     }

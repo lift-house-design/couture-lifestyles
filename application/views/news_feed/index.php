@@ -1,22 +1,35 @@
-<div class="content-wrap2 news-feed">
-<div class="headerimg"> 
-    <img src='/assets/headerimages/news-feed-headerimg.jpg' alt='<?= $page ?> header image'>
-</div>
-<? foreach($news as $b){ ?>
-	<div class="blog-wrap">
-		<h3 class="blog-title">
-			<a href="/news_feed/view/<?= $b['id'] ?>"><h1 class="blog-title"><?= $b['name'] ?></h1></a>
-			<span class="blog-time"/><?= date('Y - m - d', strtotime($b['time'])) ?></span>
-		</h3>
-		<div class="w100pc"></div>
-		<div class="blog-content"><?= $b['content'] ?></div>
+<div class="content"><?php echo $content ?></div>
+<?php if(isset($older) || isset($newer)): ?>
+	<div class="pagination">
+		<?php if(isset($older)): ?>
+			<?php echo anchor('news/'.intval($older),'Older','class="older button"') ?>
+		<?php endif; ?>
+		<?php if(isset($newer)): ?>
+			<?php echo anchor('news/'.intval($newer),'Newer','class="newer button"') ?>
+		<?php endif; ?>
 	</div>
-	<div class="spacer10"></div>
-<? } ?>
-<? if(isset($older)){ ?>
-	<a href="/news_feed/<?= intval($older) ?>">&larr; Older</a>
-<? } ?>
-<? if(isset($newer)){ ?>
-	<a class="pull-right" href="/news_feed/<?= intval($newer) ?>">Newer &rarr;</a>
-<? } ?>
+<?php endif; ?>
+<div class="news-listing">
+	<?php foreach($news as $news_data): ?>
+		<article class="news-item">
+			<header>
+				<h2><?php echo $news_data['name'] ?></h2>
+				<div class="date"><?php echo date('F d, Y', strtotime($news_data['time'])) ?></div>
+			</header>
+			<div class="content">
+				<?php echo get_instance()->_parse_content($news_data['content'],$word_limit) ?>
+			</div>
+			<?php echo anchor('news/view/'.$news_data['id'],'Read More','class="button"') ?>
+		</article>
+	<?php endforeach; ?>
 </div>
+<?php if(isset($older) || isset($newer)): ?>
+	<div class="pagination">
+		<?php if(isset($older)): ?>
+			<?php echo anchor('news/'.intval($older),'Older','class="older button"') ?>
+		<?php endif; ?>
+		<?php if(isset($newer)): ?>
+			<?php echo anchor('news/'.intval($newer),'Newer','class="newer button"') ?>
+		<?php endif; ?>
+	</div>
+<?php endif; ?>

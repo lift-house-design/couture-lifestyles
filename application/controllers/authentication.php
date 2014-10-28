@@ -8,9 +8,8 @@ class Authentication extends App_Controller
 	{
 		$this->models[] = 'content';
 		parent::__construct();
-		$this->asides['topbar'] = 'topbar';
-		$this->asides['footer'] = 'footer';
-		$this->asides['notifications'] = 'notifications';
+
+		$this->asides['notifications'] = 'asides/notifications';
 		
 		// use min_css and min_js when possible to load assets through minify
 		//$this->min_js[] = 'application.js';		

@@ -15,33 +15,25 @@ class App_Controller extends CI_Controller
      * ------------------------------------------------------------ */
     
     protected $js=array(
-        'jquery-1.10.2.min.js',
-        'modernizr-2.6.2.min.js',
-        'jquery.placeholder.js',
-        '/assets/plugins/select/jquery.customSelect.min.js',
-        '/plugins/skrollr/dist/skrollr.min.js',
-        'application.js',
+        'vendor/jquery/jquery-1.11.1.js',
+        'vendor/skrollr/skrollr.js',
     );
     protected $min_js=array();
     
-    protected $css = array(
-        'normalize.css',
-        'normalize.css',
-        'application.css',
-        '/plugins/skrollr/examples/fixed-positioning.css',
-    );
+    protected $css = array('css/application.css');
     
     protected $min_css = array();
     protected $less_css = array();
 
     protected $asides = array(
-        'analytics' => 'analytics',
-        'seo' => 'seo'
+        'head_tags'=>'layouts/asides/head_tags',
+        'nav'=>'layouts/asides/nav',
+        'footer'=>'layouts/asides/footer',
     );
 
-    protected $helpers = array(
-        'config'
-    );
+    protected $meta=array();
+
+    protected $helpers = array('html','url','string','config');
 
     /**
      * The current request's view. Automatically guessed
@@ -53,7 +45,10 @@ class App_Controller extends CI_Controller
      * An array of variables to be passed through to the
      * view, layout and any asides
      */
-    protected $data = array();
+    protected $data = array(
+        'page_header'=>FALSE,
+        'page'=>FALSE,
+    );
 
     /**
      * The name of the layout to wrap around the view.
@@ -98,12 +93,24 @@ class App_Controller extends CI_Controller
         $db_config=$this->config->item('database');
         $this->load->database($db_config);
 
+        $this->config->load('app',TRUE);
+
         $this->_load_helpers();
         $this->_load_models();
         $this->_load_configuration();
 
+        $this->data['nav_data']=$this->content->get_nav_data();
+        $this->data['footer_data']=$this->content->get_footer_data();
+
         if($this->authenticate() === FALSE)
             redirect($this->authentication_redirect);
+    }
+
+    public function _parse_content($content,$limit=FALSE)
+    {
+        $this->load->helper('text');
+        $content=strip_tags($content,'<p><a><img><b><i><u><strong><em><div><h1><h2><h3><h4><h5><h6>');
+        return $limit ? word_limiter($content,$limit) : $content;
     }
 
     // load custom configuration from database
@@ -162,6 +169,21 @@ class App_Controller extends CI_Controller
         
         $this->data['content_pages'] = $this->content->get_pages();
         $this->data['social_media'] = $this->configuration->get_social_media();
+
+        $this->data['app_title']=$this->config->item('app_title','app');
+        $this->data['page_title']=$this->title;
+        $this->data['title']=parse_string($this->config->item('title_format','app'),array(
+            'app_title'=>$this->config->item('app_title','app'),
+            'page_title'=>$this->title,
+        ));
+
+        $this->data['meta']=array_merge($this->config->item('default_meta','app'),$this->meta);
+        $this->data['css']=$this->css;
+        $this->data['js']=$this->js;
+
+        $this->data['asset_path']=$this->config->item('assets_path','app');
+        $this->data['uri_string']=implode('-',$this->uri->rsegment_array());
+        $this->data['is_homepage']=( $this->data['uri_string']==='site-index' );
     }
     
     /**
@@ -211,7 +233,7 @@ class App_Controller extends CI_Controller
             {
                 foreach ($this->asides as $name => $file)
                 {
-                    $this->data['yield_'.$name] = $this->load->view('asides/' . $file, $this->data, TRUE);
+                    $this->data['yield_'.$name] = $this->load->view($file, $this->data, TRUE);
                 }
             }
             // If $this->view isn't empty, load it. If it isn't, try and guess based on the controller and action name

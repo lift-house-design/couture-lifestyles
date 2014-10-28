@@ -30,25 +30,17 @@ function form_select($data, $val=false, $name='', $title=false, $attr='')
 
 if(!function_exists('form_field'))
 {
-	function form_field($label, $name, $type='text', $params=array())
+	function form_field($name,$label,$type='text',$options=array())
 	{
 		$CI=get_instance();
 
-		if($type=='text')
-			$type='input';
-
-		if(is_array($params))
-		{
-			$params['id']=$name;
-			$params['name']=$name;	
-		}
-		
-		return $CI->load->view('asides/field',array(
-			'label'=>$label,
+		$data=array_merge($options,array(
 			'name'=>$name,
+			'label'=>$label,
 			'type'=>$type,
-			'params'=>$params,
-		),TRUE);
+		));
+
+		return $CI->load->view('asides/field',$data,TRUE);
 	}
 }
 

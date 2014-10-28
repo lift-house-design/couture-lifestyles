@@ -146,15 +146,13 @@
 		</div>
 	</div>
 
-	<h3>Blog Management</h3>
+	<!--h3>Blog Management</h3>
 	<div>
-		<iframe class="clear" src="/admin/blog">
-		</iframe>
-	</div>
-        <h3>News Management</h3>
+		<iframe class="clear" src="/admin/blog"></iframe>
+	</div-->
+    <h3>News Management</h3>
 	<div>
-		<iframe class="clear" src="/admin/news_feed">
-		</iframe>
+		<iframe class="section" src="/admin/news_feed"></iframe>
 	</div>
 </div>
 <h3> <a href="/admin/gallery">Manage Gallery</a> </h3>

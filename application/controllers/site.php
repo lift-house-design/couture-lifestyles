@@ -1,29 +1,27 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Site extends App_Controller
-
 {
-    protected $data = array(
-        'dir' => array(
-            'original' => 'assets/uploads/original/',
-            'thumb' => 'assets/uploads/thumbs/'
-        ),
-        'total' => 0,
-        'images' => array(),
-        'error' => ''
-    );
-    
-	public function __construct()
+    public function __construct()
                 
 	{
 		$this->models[] = 'content';
 		$this->models[] = 'blog';
         $this->models[] = 'news_feed';
 		
-		$this->asides['topbar'] = 'topbar';
-		$this->asides['footer'] = 'footer';
-		$this->asides['notifications'] = 'notifications';
+
+		$this->asides['notifications'] = 'asides/notifications';
 		
+		$this->data=array_merge($this->data,array(
+	        'dir' => array(
+	            'original' => 'assets/uploads/original/',
+	            'thumb' => 'assets/uploads/thumbs/'
+	        ),
+	        'total' => 0,
+	        'images' => array(),
+	        'error' => ''
+	    ));
+
 		parent::__construct();
 	}
 
@@ -31,35 +29,11 @@ class Site extends App_Controller
 
 	public function index()
 	{
-		$this->data['is_mobile'] = preg_match("/Mobile|Android|BlackBerry|Phone|Bot|Spider|Crawler/i", $_SERVER['HTTP_USER_AGENT']);
 		// Why?
 		$this->contact();
-		$this->layout = 'blank.php';
-		$this->asides['footer'] = 'footer';
-		$this->asides['topbar'] = 'topbar';
 
-		// if($this->data['is_mobile'])
-		// {
-		// 	$this->view = 'site/index_mobile';
-		// 	$this->css[1] = 'index_mobile.css';
-		// 	$this->js[] = 'index_mobile.js';
-		// }
-		// else
-		// {
-		// $this->css[] = 'application.css';
-		$this->css[] = 'index.css'; //$this->data['is_mobile'] ? 'index_mobile.css' : 'index.css';
-		$this->css[] = 'application.css'; //$this->data['is_mobile'] ? 'index_mobile.css' : 'index.css';
-		
-		// $this->js[] = 'index.js'; //$this->data['is_mobile'] ? 'index_mobile.js' : 'index.js';
-		// Need index.js to be loaded before application.js
-		// unset($this->js[ array_search('application.js',$this->js) ]);
-
-	
-		// }
-
-		$this->asides['contact'] = 'contact';
-		$this->asides['content_home'] = 'content_home';
-		$this->data['content_about'] = $this->content->get('about');
+		$this->asides['contact'] = 'asides/contact';
+		$this->data['content_home'] = $this->content->get('homepage');
 		$this->data['blogs'] = $this->blog->recent(0,5);
 	}
 
@@ -70,17 +44,19 @@ class Site extends App_Controller
 	// this was used for slang.org CMS pages. Should build a CMS system with it.
 	public function content($page)
 	{
-               
 		$this->data['content'] = $this->content->get($page);
-                $this->data['title'] = $this->content->get_title($page);
+        $this->title = $this->content->get_title($page);
 		$this->data['page'] = $page;
+		$this->data['page_header']='img/headers/'.$page.'.jpg';
 		$meta = $this->content->get_meta($page);
-		config_merge('meta',$meta);
+		config_merge('meta',$this->meta);
 	}
 
 	public function contact()
 	{
-                $this->data['page'] = "contact";
+		$this->title='Contact';
+        $this->data['page'] = 'contact';
+        $this->data['page_header']='img/headers/contact.jpg';
 		$this->data['content'] = $this->content->get('contact');
 	//	$this->data['body_class'] = 'bg5';
 		$this->load->library('valid');
@@ -153,8 +129,15 @@ class Site extends App_Controller
 		$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
 	}
 
-        
-        public function gallery($start = 0) {
+    
+    public function gallery($start = 0) {
+		$this->title='Gallery';
+        $this->data['page'] = 'gallery';
+        $this->data['page_header']='img/headers/gallery.jpg';
+		$this->data['content'] = $this->content->get('gallery');
+
+		$this->css[]='plugins/fancybox2/jquery.fancybox.css';
+		$this->js[]='plugins/fancybox2/jquery.fancybox.pack.js';
 
         try {
 
@@ -187,11 +170,10 @@ class Site extends App_Controller
 
             $this->pagination->initialize($c_paginate);
             
-            $this->load->view('images/gallery', $this->data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-    }
+	}
 
         
 	// robots.txt generator

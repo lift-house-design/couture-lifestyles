@@ -43,8 +43,6 @@ $route['404_override'] = 'site/index';
 $route['sitemap.xml'] = 'site/sitemap_xml'; 
 $route['robots.txt'] = 'site/robots'; 
 $route['sitemap'] = 'site/sitemap'; 
-$route['contact'] = 'site/contact';
-$route['gallery'] = 'site/gallery';  
 $route['about'] = 'site/content/about'; 
 $route['terms'] = 'site/content/terms'; 
 $route['privacy'] = 'site/content/privacy'; 
@@ -58,7 +56,7 @@ $route['captcha/(:any)/(:any)/(:any)'] = 'site/captcha/$1/$2';
 $route['google(:any).html'] = 'site/google_verification/$1'; 
 
 // load content pages
-require_once( __DIR__ .'/app.php');
+require_once( __DIR__ .'/app2.php');
 $mysqli = new mysqli(
 	$config['database']['hostname'], 
 	$config['database']['username'], 
@@ -72,6 +70,11 @@ if ($res) {
         $route[$row['name']] = 'site/content/'.$row['name'];
 
 }
+
+$route['gallery'] = 'site/gallery';  
+$route['news'] = 'news_feed/index';
+$route['news/view/(:num)'] = 'news_feed/view/$1';
+$route['contact'] = 'site/contact';
 /*
 require_once( __DIR__ .'/../../system/database/DB.php');
 

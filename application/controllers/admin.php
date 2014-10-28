@@ -8,33 +8,42 @@ class Admin extends App_Controller {
     //protected $layout='layouts/administration';
     protected $authenticate = 'administrator';
     
-    protected $data = array(
-        'dir' => array(
-            'original' => 'assets/uploads/original/',
-            'thumb' => 'assets/uploads/thumbs/'
-        ),
-        'total' => 0,
-        'images' => array(),
-        'error' => ''
-    );
-
     public function __construct() {
         $this->models[] = 'content';
         $this->models[] = 'blog';
         $this->models[] = 'news_feed';
 
+        $this->data=array_merge($this->data,array(
+            'dir' => array(
+                'original' => 'assets/uploads/original/',
+                'thumb' => 'assets/uploads/thumbs/'
+            ),
+            'total' => 0,
+            'images' => array(),
+            'error' => ''
+        ));
+
         parent::__construct();
 
-        $this->asides['topbar'] = 'topbar';
-        $this->asides['footer'] = 'footer';
-        $this->asides['notifications'] = 'notifications';
+        $this->asides['notifications'] = 'asides/notifications';
         $this->js[] = '/plugins/tinymce/js/tinymce/tinymce.min.js';
         $this->js[] = '/plugins/fancybox2/jquery.fancybox.pack.js';
         $this->js[] = '/plugins/jquery-ui/js/jquery-ui-1.10.3.custom.min.js';
         $this->css[] = '/plugins/jquery-ui/css/smoothness/jquery-ui.min.css';
-        $this->js[] = 'admin.js';
+        $this->js[] = 'js/admin.js';
         //$this->less_css[] = 'admin.less';
-        $this->css[] = 'admin.css';
+        // array_unshift($this->css,'css/admin.css');
+        $this->css[] = 'css/admin.css';
+
+        $this->data['nav_data']=array(
+            'admin'=>array(
+                'title'=>'Dashboard',
+            ),
+            'admin/gallery'=>array(
+                'title'=>'Manage Gallery',
+            ),
+            'authentication/log_out'=>array('title'=>'Log Out'),
+        );
     }
 
     public function index() {
