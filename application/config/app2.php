@@ -9,8 +9,6 @@ elseif(strpos($_SERVER['HTTP_HOST'],'.lifthousedesign.com') !== false)
 else
     $config['environment'] = 'production';
 
-$config['environment']='local';
-
 $config['error_email'] = '';
 /* Database Configuration */
 $config['databases']=array(
@@ -30,9 +28,9 @@ $config['databases']=array(
         'database'=>'couturelifestyles',
     ),
     'production'=>array(
-        'username'=>'',
-        'password'=>'',
-        'database'=>'',
+        'username'=>'couturelifestyle',
+        'password'=>'couturelifestyle',
+        'database'=>'couturelifestyles',
         'db_debug' => false,
     ),
 );

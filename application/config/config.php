@@ -15,7 +15,6 @@
 |
 */
 $config['base_url'] = 'http://couturelifestyles.lifthousedesign.com/';
-$config['base_url'] = 'http://couture-lifestyles/';
 
 /*
 |--------------------------------------------------------------------------
