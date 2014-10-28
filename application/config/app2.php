@@ -9,6 +9,8 @@ elseif(strpos($_SERVER['HTTP_HOST'],'.lifthousedesign.com') !== false)
 else
     $config['environment'] = 'production';
 
+$config['environment']='local';
+
 $config['error_email'] = '';
 /* Database Configuration */
 $config['databases']=array(

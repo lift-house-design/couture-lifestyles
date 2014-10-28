@@ -9,3 +9,53 @@
 */
 
 @import '../../vendor/unsemantic/partials/unsemantic-grid-responsive';
+
+@media screen and (max-width: $media-mobile-max) {
+    #homepage-intro {
+        height: auto;
+        text-align: center;
+
+        .logo {
+            position: relative;
+            left: 0;
+            top: 0;
+            margin: 10px 0;
+        }
+    }
+
+    nav#layout-nav {
+        .wrapper {
+            height: auto;
+            padding: 0;
+        }
+        .logo {
+            display: none;
+        }
+        ul.nav {
+            position: static;
+            left: 0;
+            text-align: center;
+
+            li {
+                &:hover {
+
+                }
+            }
+
+            > li {
+                display: block;
+                position: static;
+
+                &:hover {
+                    > ul {
+                        display: none;
+                    }
+                }
+
+                > a {
+                    display: block;
+                }
+            }
+        }
+    }
+}
