@@ -28,6 +28,14 @@ main#layout-content {
     margin-bottom: $content-vertical-spacing;
 
     .content {
+        > *:first-child {
+            margin-top: 0;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+        
         img {
             float: left;
             margin-top: 20px;

@@ -1726,6 +1726,10 @@ footer#layout-footer .links {
 main#layout-content {
   margin-top: 95px;
   margin-bottom: 20px; }
+  main#layout-content .content > *:first-child {
+    margin-top: 0; }
+  main#layout-content .content > *:last-child {
+    margin-bottom: 0; }
   main#layout-content .content img {
     float: left;
     margin-top: 20px;
@@ -3288,7 +3292,7 @@ footer#layout-footer .links {
   #page-header {
     width: auto;
     height: 200px;
-    margin-bottom: 10px; }
+    margin-bottom: -75px; }
 
   nav#layout-nav {
     margin-bottom: 0; }
@@ -3330,7 +3334,7 @@ footer#layout-footer .links {
           display: block; }
 
   main#layout-content {
-    margin-top: 0px; }
+    margin-top: 85px; }
     main#layout-content .content img {
       float: none;
       max-width: 100%; }
@@ -3341,4 +3345,7 @@ footer#layout-footer .links {
         max-width: 100%; }
 
   footer#layout-footer {
-    height: auto; } }
+    height: auto; }
+
+  .homepage main#layout-content {
+    margin-top: 0; } }

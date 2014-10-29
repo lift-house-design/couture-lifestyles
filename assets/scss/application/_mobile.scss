@@ -35,7 +35,7 @@
     #page-header {
         width: auto;
         height: 200px;
-        margin-bottom: 10px;
+        margin-bottom: ($nav-height+$nav-border-size)*-1;
     }
 
     nav#layout-nav {
@@ -105,10 +105,8 @@
     }
 
     main#layout-content {
-        margin-top: 0px;
+        margin-top: $nav-height+$nav-border-size+10px;
 
-
-        
         .content {
             img {
                 float: none;
@@ -129,5 +127,9 @@
         height: auto;
     }
 
-
+    .homepage {
+        main#layout-content {
+            margin-top: 0;
+        }
+    }
 }

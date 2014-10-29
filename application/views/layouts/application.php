@@ -3,8 +3,7 @@
 <head>
     <?php echo $yield_head_tags ?>
 </head>
-<?php $page=FALSE ?>
-<body<?php if($page): ?> id="<?php echo $page ?><?php endif; ?> id="skrollr-body" class="<?php echo $uri_string.( $is_homepage ? ' homepage' : '' ) ?>">
+<body<?php if($page): ?> id="<?php echo $page ?>"<?php endif; ?> class="<?php echo $uri_string.( $is_homepage ? ' homepage' : '' ) ?>">
     <div class="sticky-footer-wrapper">
         <?php if($is_homepage): ?>
             <div id="homepage-intro" class="parallax-img-container">
