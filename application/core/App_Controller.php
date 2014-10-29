@@ -110,6 +110,7 @@ class App_Controller extends CI_Controller
     {
         $this->load->helper('text');
         $content=strip_tags($content,'<p><a><img><b><i><u><strong><em><div><h1><h2><h3><h4><h5><h6>');
+        $content=str_replace('<p>&nbsp;</p>','',$content);
         return $limit ? word_limiter($content,$limit) : $content;
     }
 

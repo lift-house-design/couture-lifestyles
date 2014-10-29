@@ -23,6 +23,82 @@
         <div class="sticky-footer-push"></div>
     </div>
     <?php echo $yield_footer ?>
+        <script>
+        <?php if($is_homepage || $page_header): ?>
+            function window_resize()
+            {
+                // If mobile
+                if($(window).width()<=767)
+                {
+                    // If skrollr is enabled
+                    if($('.skrollable').length)
+                    {
+                        // Disable skrollr
+                        s.destroy();
+                    }
+                }
+                // If desktop
+                else
+                {
+                    // If skrollr is disabled
+                    if(!$('.skrollable').length)
+                    {
+                        // Enable skrollr
+                        s=skrollr.init({
+                            smoothScrolling: true
+                        });
+                    }
 
+                    // Reset show menu button to closed
+                    $('#layout-nav .nav').css('left','');
+                    $('#layout-nav .show-menu').removeClass('open');
+                }
+            }
+
+            $(window_resize);
+            $(window).resize(window_resize);
+        <?php endif; ?>
+        // Mobile menu
+        var animate_duration=300,
+            is_animating=false;
+
+        $('.show-menu').on('click',function(){
+            if(!is_animating)
+            {
+                is_animating=true;
+
+                var $menu=$('#layout-nav .nav'),
+                    $show_menu=$('#layout-nav .show-menu');
+
+                // If menu is open
+                if($show_menu.hasClass('open'))
+                {
+                    // Close it
+                    $menu.animate({
+                        left: '105%'
+                    },{
+                        duration: animate_duration,
+                        complete: function(){
+                            $show_menu.removeClass('open');
+                            is_animating=false;
+                        }
+                    });
+                }
+                else
+                {
+                    // Open it
+                    $menu.animate({
+                        left: '50%'
+                    },{
+                        duration: animate_duration,
+                        complete: function(){
+                            $show_menu.addClass('open');
+                            is_animating=false;
+                        }
+                    });
+                }
+            }
+        });
+        </script>
 </body>
 </html>

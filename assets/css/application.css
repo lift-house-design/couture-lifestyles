@@ -3270,7 +3270,7 @@ footer#layout-footer .links {
 @media screen and (max-width: 767px) {
   .sticky-footer-wrapper {
     margin-bottom: 0;
-    min-height: auto; }
+    min-height: initial; }
     .sticky-footer-wrapper .sticky-footer-push {
       display: none; }
 
@@ -3281,24 +3281,64 @@ footer#layout-footer .links {
       position: relative;
       left: 0;
       top: 0;
-      margin: 40px 0; }
+      max-width: 335px;
+      width: 90%;
+      margin: 40px auto; }
 
-  nav#layout-nav .wrapper {
-    height: auto;
-    padding: 0; }
-  nav#layout-nav .logo {
-    display: none; }
-  nav#layout-nav ul.nav {
-    position: static;
-    left: 0;
-    text-align: center; }
-    nav#layout-nav ul.nav > li {
-      display: block;
-      position: static; }
-      nav#layout-nav ul.nav > li:hover > ul {
-        display: none; }
-      nav#layout-nav ul.nav > li > a {
-        display: block; }
+  #page-header {
+    width: auto;
+    height: 200px;
+    margin-bottom: 10px; }
+
+  nav#layout-nav {
+    margin-bottom: 0; }
+    nav#layout-nav .wrapper {
+      padding: 0;
+      margin: 0; }
+    nav#layout-nav .logo {
+      left: 10px; }
+    nav#layout-nav .show-menu {
+      position: absolute;
+      right: 10px;
+      top: 11px;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      cursor: pointer; }
+      nav#layout-nav .show-menu.open {
+        background-color: #4e6785; }
+      nav#layout-nav .show-menu img {
+        position: absolute;
+        top: 8px;
+        left: 9px; }
+    nav#layout-nav ul.nav {
+      position: relative;
+      width: 50%;
+      left: 105%;
+      top: 75px;
+      text-align: center;
+      background-color: #3b4e65; }
+      nav#layout-nav ul.nav > li {
+        display: block;
+        position: static;
+        border-bottom: 2px solid #b5aca0; }
+        nav#layout-nav ul.nav > li:last-child {
+          border-bottom: 0; }
+        nav#layout-nav ul.nav > li:hover > ul {
+          display: none; }
+        nav#layout-nav ul.nav > li > a {
+          display: block; }
 
   main#layout-content {
-    margin-top: 0px; } }
+    margin-top: 0px; }
+    main#layout-content .content img {
+      float: none;
+      max-width: 100%; }
+    main#layout-content .content .images {
+      float: none;
+      margin-top: -10px; }
+      main#layout-content .content .images img {
+        max-width: 100%; }
+
+  footer#layout-footer {
+    height: auto; } }
