@@ -314,7 +314,8 @@ body {
   font-family: Roboto, sans-serif;
   font-weight: 300;
   font-size: 16px;
-  color: #4d4d4d; }
+  color: #4d4d4d;
+  height: 100%; }
 
 /*
 --------------------------------------------------
@@ -3267,6 +3268,12 @@ footer#layout-footer .links {
     clear: both;
     width: 100%; } }
 @media screen and (max-width: 767px) {
+  .sticky-footer-wrapper {
+    margin-bottom: 0;
+    min-height: auto; }
+    .sticky-footer-wrapper .sticky-footer-push {
+      display: none; }
+
   #homepage-intro {
     height: auto;
     text-align: center; }
@@ -3274,7 +3281,7 @@ footer#layout-footer .links {
       position: relative;
       left: 0;
       top: 0;
-      margin: 10px 0; }
+      margin: 40px 0; }
 
   nav#layout-nav .wrapper {
     height: auto;
@@ -3291,4 +3298,7 @@ footer#layout-footer .links {
       nav#layout-nav ul.nav > li:hover > ul {
         display: none; }
       nav#layout-nav ul.nav > li > a {
-        display: block; } }
+        display: block; }
+
+  main#layout-content {
+    margin-top: 0px; } }

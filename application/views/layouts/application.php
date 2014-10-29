@@ -3,7 +3,8 @@
 <head>
     <?php echo $yield_head_tags ?>
 </head>
-<body<?php if($page): ?> id="<?php echo $page ?>"<?php endif; ?> class="<?php echo $uri_string.( $is_homepage ? ' homepage' : '' ) ?>">
+<?php $page=FALSE ?>
+<body<?php if($page): ?> id="<?php echo $page ?><?php endif; ?> id="skrollr-body" class="<?php echo $uri_string.( $is_homepage ? ' homepage' : '' ) ?>">
     <div class="sticky-footer-wrapper">
         <?php if($is_homepage): ?>
             <div id="homepage-intro" class="parallax-img-container">
@@ -22,12 +23,6 @@
         <div class="sticky-footer-push"></div>
     </div>
     <?php echo $yield_footer ?>
-    <?php if($is_homepage || $page_header): ?>
-        <script>
-            skrollr.init({
-                smoothScrolling: true
-            });
-        </script>
-    <?php endif; ?>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php if($is_homepage): ?>
-    <nav id="layout-nav" data-anchor-target="#homepage-intro" data-top="position:static;width:100%;" data-top-bottom="position:fixed;width:100%;top:0px"><!--  -->
+    <nav id="layout-nav" class="hide-on-mobile" data-anchor-target="#homepage-intro" data-top="position:static;width:100%;" data-top-bottom="position:fixed;width:100%;top:0px"><!--  -->
 <?php else: ?>
     <nav id="layout-nav" class="fixed">
 <?php endif; ?>

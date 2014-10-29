@@ -11,6 +11,14 @@
 @import '../../vendor/unsemantic/partials/unsemantic-grid-responsive';
 
 @media screen and (max-width: $media-mobile-max) {
+    .sticky-footer-wrapper {
+        margin-bottom: 0;
+        min-height: auto;
+
+        .sticky-footer-push {
+            display: none;
+        }
+    }
     #homepage-intro {
         height: auto;
         text-align: center;
@@ -19,7 +27,7 @@
             position: relative;
             left: 0;
             top: 0;
-            margin: 10px 0;
+            margin: 40px 0;
         }
     }
 
@@ -58,4 +66,10 @@
             }
         }
     }
+
+    main#layout-content {
+        margin-top: 0px;
+    }
+
+
 }
